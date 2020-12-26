@@ -1,0 +1,116 @@
+SELECT name,sum(salary) from table_1
+GROUP BY name;
+
+
+SELECT name from table_1 order by name
+
+
+SELECT DISTINCT name from table_1 order by name
+
+SELECT MAX(salary) as max_salary from table_1
+
+
+SELECT MIN(salary) as min_salary from table_1
+
+SELECT sum(salary) as salary_total from table_1
+
+SELECT AVG(salary) as avg_salary from table_1
+
+SELECT count(age) from table_1
+
+SELECT count(age) as age_count FROM
+table_1;
+
+select * from table_1 WHERE name like 's%'
+
+
+SELECT * FROM table_1 where name like 's%' order by name limit 1
+
+
+SELECT * from table_1 where name like '%d'
+
+SELECT * from table_1 where address like 'd%i'
+
+SELECT * from table_1 LIMIT 2
+
+SELECT * FROM table_1 where address like '_e%'
+
+SELECT * from table_1 WHERE address like 'del%'
+
+SELECT name,age,address,city,customer_id
+from table_1
+right join table_2
+on table_1.address = table_2.city;
+
+SELECT name,age,address,city,customer_id
+from table_1
+left join table_2
+on table_1.address = table_2.city;
+
+SELECT * from table_1 WHERE address like '%lh%'
+
+SELECT * from table_1 WHERE name like 'sudhi_'
+
+SELECT * from table_1
+where address in ('delhi','Mumbai');
+
+SELECT name,age from table_1
+where age in(25,32);
+
+SELECT name,age,address from table_1
+where age in (25,32);
+
+SELECT * from table_1
+where age BETWEEN 20 and 30;
+
+SELECT * from table_1
+where salary BETWEEN 1500 and 2000;
+
+SELECT * FROM table_1
+where age not BETWEEN 10 and 25 ;
+
+SELECT * from table_1 
+where age BETWEEN 20 and 50 
+and id not BETWEEN 1 and 3;
+
+SELECT name as customer_name, age as customer_age
+from table_1;
+
+SELECT name as First_name from table_1;
+
+SELECT upper(name) as First_Name from table_1;
+
+SELECT lower(address) as Lower_Address from table_1;
+
+SELECT DISTINCT name from table_1;
+
+SELECT DISTINCT age from table_1;
+
+SELECT name,age,city,cutomer_id
+from table_1,table_2
+where table_1.id = table_2.cutomer_id;
+
+SELECT name,age,order_id,city,customer_id
+from table_1, table_2
+where table_1.order_id = table_2.customer_id;
+
+SELECT name,age,address,city,amount
+from table_1,table_2
+where table_1.address = table_2.city;
+
+SELECT name,age,address,city,customer_id
+from table_1
+inner join table_2
+on table_1.address = table_2.city;
+
+SELECT name,age,address,city,customer_id
+from table_1
+INNER join table_2
+on table_1.address = table_2.customer_id;
+
+
+left table is primary key
+right table is foreign key
+
+
+
