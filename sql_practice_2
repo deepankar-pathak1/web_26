@@ -1,0 +1,284 @@
+1) select * from 
+nobel_win
+where year = 1970 and subject <> 'Physiology'
+and subject <> 'Economics';
+
+2) select * from nobel_win
+where year < 1971 and subject = 'Physiology'
+UNION
+(select * from nobel_win where 
+(year>1974 and subject = 'Peace'));
+
+3)select * from nobel_win
+where winner = 'Johannes Georg Bednorz';
+
+4)select * from nobel_win
+where subject not like '%P'
+and 
+order by year desc,winner;
+
+5) select * from nobel_win
+where year = 1970
+order by subject DESC,winner;
+
+6)select avg(PRO_PRICE) as average_price
+from item_mast
+where PRO_COM = 16;
+
+7)select pro_name as "Product_name",pro_price as "Product_Price in Rs"
+from item_mast;
+
+8)select pro_name,pro_price 
+from item_mast
+where pro_price >= 250 
+order by pro_price DESC,pro_name;
+
+9)select avg(pro_price) as "Average_Price",pro_com
+from item_mast
+group by pro_com;
+
+10) select avg(pro_price) as "Average_Price",pro_com as "Product_Code"
+from item_mast
+group by pro_com;
+
+
+11)select pro_name,pro_price
+from item_mast
+where pro_price = (select min(pro_price) from item_mast);
+
+12) select DISTINCT EMP_LNAME from
+emp_details;
+
+13) select * from emp_details
+where emp_lname = 'Snares';
+
+14)select * from emp_details
+where emp_dept = 57;
+
+15) select * from customer 
+where grade > 100;
+
+16) select * from 
+customer
+where city = 'New York' 
+OR NOT
+grade > 100;
+
+17)select * from customer
+where NOT (city = 'New York' OR grade > 100);
+
+18) select * from orders
+where NOT(ord_date='2012-09-10'
+AND
+salesman_id > 5005
+OR(purch_amt > 1000));
+
+19)select salesman_id,name,city,commission 
+from salesman
+where commission > 0.10
+and
+commission < 0.12;
+
+20)select * 
+from orders
+where purch_amt < 200 
+OR
+NOT(ord_date >= '2012-02-10' and customer_id  < 3009);
+
+21)select * from orders
+where NOT(ord_date = '2012-08-17' OR customer_id > 3005 and purch_amt < 1000);
+
+22)select ord_no,purch_amt,
+(100*purch_amt)/6000 as "Achieved_Percentage",
+(100*(6000-purch_amt))/6000 as "Unachived Percentage"
+from orders
+where (100 * purch_amt)/6000 > 50;
+
+23)select * from emp_details
+where EMP_LNAME = 'Dosni' or EMP_LNAME = 'Mardy';
+
+24)select * from emp_details
+where emp_dept = 47 OR emp_dept = 63;
+
+25)select * from
+salesman
+where city = 'Paris' Or city = 'Rome';
+
+26)select * from salesman
+where city in ('Paris','Rome');
+
+27)select * from salesman
+where not city in ('Paris','Rome');
+
+28)select * from customer
+where customer_id between 3007 and 3009;
+
+29)select * from salesman
+where commission between 0.12 and 0.14;
+
+30)select * from orders
+where (purch_amt between 500 and 4000)
+and not purch_amt in (948.50,1983.43);
+
+31)select * from salesman 
+where name between 'A' and 'K';
+
+32) select * from customer
+where cust_name like 'B%';
+
+33)select * from customer
+where cust_name like '%n';
+
+34)select * from salesman
+where name like 'N__l%';
+
+35) select * from emp_details
+where emp_lname like 'D%';
+
+36) select count(cust_name)
+from customer;
+
+37)select count(distinct grade)
+from customer;
+
+38)select max(purch_amt) as Max_amount 
+from orders;
+
+39)select min(purch_amt) as Minimum_amount
+from orders;
+
+40)select customer_id,max(purch_amt)
+from orders
+group by customer_id;
+
+41)select max(purch_amt) as Max_Purchase,customer_id
+from orders
+group by customer_id;
+
+42)select max(purch_amt),salesman_id
+from orders
+where ord_date = '2012-08-17'
+group by salesman_id;
+
+43)select max(purch_amt),customer_id,ord_date
+from orders
+where purch_amt > 2000
+group by customer_id,ord_date;
+
+44)select max(purch_amt),customer_id,ord_date
+from orders
+where purch_amt > 2000
+group by customer_id,ord_date;
+
+45) select max(purch_amt) as Maximim_Amount,customer_id,ord_date
+from orders
+group by customer_id,ord_date
+having max(purch_amt) between 2000 and 6000;
+
+46)select max(purch_amt),customer_id,ord_date
+from orders
+group by customer_id,ord_date
+having max(purch_amt) in (2000,3000,5760,6000);
+
+47) select customer_id,max(purch_amt)
+from orders
+where customer_id between 3002 and 3007
+group by customer_id
+having max(purch_amt) > 1000;
+
+48)select max(purch_amt),salesman_id
+from orders
+group by salesman_id
+having salesman_id between 5003 and 5008;
+
+49) select count(ord_date)
+from orders
+where ord_date = '2012-08-17';
+
+50)select count(salesman_id)
+from salesman
+where salesman_id is not null;
+
+51)select avg(pro_price), pro_name
+from item_mast
+group by pro_name;
+
+52)select avg(pro_price) as Average_Price,pro_com as Product_Code
+from item_mast
+group by pro_com;
+
+53)select sum(dpt_allotment)
+from emp_department;
+
+54)select count(*),emp_dept
+from emp_details
+group by emp_dept;
+
+55)select * from 
+orders
+order by ord_date DESC;
+
+56)select * from 
+orders
+order by ord_date,purch_amt DESC;
+
+57)select salesman_id,ord_date,max(purch_amt)
+from orders
+group by salesman_id,ord_date
+order by salesman_id,ord_date;
+
+58)select cust_name,city,grade
+from customer
+order by grade desc;
+
+59)select ord_date,max(purch_amt),max(purch_amt)*0.15
+from orders
+group by ord_date
+order by ord_date;
+
+60)select customer.cust_name,salesman.name,salesman.city
+from customer,salesman
+where customer.city = salesman.city;
+
+61)select customer.cust_name,salesman.name
+from customer,salesman
+where customer.salesman_id = salesman.salesman_id;
+
+62)select ord_no,cust_name,salesman.city,customer.city
+from salesman,customer,orders
+where salesman.city <> customer.city
+and
+salesman.salesman_id = customer.salesman_id
+and
+customer.salesman_id = orders.salesman_id;
+
+63)select orders.ord_no,customer.cust_name
+from orders,customer
+where 
+orders.salesman_id = customer.salesman_id;
+
+64)SELECT customer.cust_name AS "Customer",
+customer.grade AS "Grade"
+FROM orders, salesman, customer
+WHERE orders.customer_id = customer.customer_id
+AND orders.salesman_id = salesman.salesman_id
+AND salesman.city IS NOT NULL
+AND customer.grade IS NOT NULL;
+
+65) select salesman.name,customer.cust_name
+from salesman,customer
+where salesman.city = customer.city;
+
+66) select a.ord_no,a.purch_amt,b.cust_name,b.city
+from orders a,customer b 
+where 
+a.customer_id = b.customer_id
+and
+a.purch_amt between 500 and 2000;
+
+67) select a.cust_name as Customer_Name,a.city,b.name,b.commission
+from customer a
+inner join salesman b
+on b.salesman_id = a.salesman_id
+where b.commission > 0.12;
+
